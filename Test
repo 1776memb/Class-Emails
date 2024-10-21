@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Processing...</title>
+    <script>
+        // Function to trigger the Zapier webhook
+        function sendWebhook() {
+            const email = new URLSearchParams(window.location.search).get('email'); // Get email from URL
+            fetch('https://hooks.zapier.com/hooks/catch/20472023/21x2vbl/' + email, {
+                method: 'GET' // or 'POST' if your Zap expects a POST request
+            })
+            .then(response => {
+                // Redirect after webhook is triggered
+                window.location.href = 'https://caledon.library.on.ca/';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+        window.onload = sendWebhook; // Trigger webhook on page load
+    </script>
+</head>
+<body>
+    <h1>Processing...</h1>
+    <p>You will be redirected shortly...</p>
+</body>
+</html>
